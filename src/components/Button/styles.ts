@@ -4,23 +4,25 @@ import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 
 interface ContainerProps {
-  type: 'outline' | 'filled'
+  type: 'outline' | 'filled';
 }
 
 interface ContentProps {
-  type: 'outline' | 'filled'
+  type: 'outline' | 'filled';
 }
 
 interface TitleProps {
-  type: 'outline' | 'filled'
+  type: 'outline' | 'filled';
 }
 
 export const Container = styled(RectButton)<ContainerProps>`
   border-radius: 5px;
-  
-  ${props => props.type === 'filled' && css`
-    background: ${colors.light.main};
-  `}
+
+  ${props =>
+    props.type === 'filled' &&
+    css`
+      background: ${colors.light.main};
+    `}
 `;
 
 export const Content = styled.View<ContentProps>`
@@ -30,18 +32,24 @@ export const Content = styled.View<ContentProps>`
   height: 38px;
   border-radius: 5px;
 
-  ${props => props.type === 'outline' && css`
-    border: 1px solid ${colors.light.main};
-  `}
-`
+  ${props =>
+    props.type === 'outline' &&
+    css`
+      border: 1px solid ${colors.light.main};
+    `}
+`;
 export const Title = styled.Text<TitleProps>`
   ${fonts.secondary};
 
-  ${props => props.type === 'outline' && css`
-    color: ${colors.light.main};
-  `}
+  ${props =>
+    props.type === 'outline' &&
+    css`
+      color: ${colors.light.main};
+    `}
 
-  ${props => props.type === 'filled' && css`
-    color: ${colors.light.background};
-  `}
-`
+  ${props =>
+    props.type === 'filled' &&
+    css`
+      color: ${colors.light.background};
+    `}
+`;

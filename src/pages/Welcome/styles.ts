@@ -10,19 +10,18 @@ export const Container = styled.View`
   background: ${colors.light.background};
 `;
 
-export const Illustration = styled.Image`
-`; 
+export const Illustration = styled.Image``;
 
 export const TextContainer = styled.View`
   width: 100%;
   align-items: center;
   margin-top: 40px;
-`; 
+`;
 
 export const Title = styled.Text`
   ${fonts.title};
   color: ${colors.light.main};
-`; 
+`;
 
 export const Description = styled.Text`
   text-align: center;
@@ -33,4 +32,4 @@ export const Description = styled.Text`
 export const ButtonsContainer = styled.View`
   margin-top: auto;
   width: 100%;
-`
+`;

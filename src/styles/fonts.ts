@@ -10,5 +10,5 @@ export default {
   secondary: `
     font-family: Poppins_500Medium;
     font-size: 12px;
-  `
-}
+  `,
+};
