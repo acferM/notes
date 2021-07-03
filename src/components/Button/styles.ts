@@ -1,10 +1,9 @@
 import { RectButton } from 'react-native-gesture-handler';
 import styled, { css } from 'styled-components/native';
-import colors from '../../styles/colors';
-import fonts from '../../styles/fonts';
 
 interface ContainerProps {
   type: 'outline' | 'filled';
+  active?: boolean;
 }
 
 interface ContentProps {
@@ -17,11 +16,22 @@ interface TitleProps {
 
 export const Container = styled(RectButton)<ContainerProps>`
   border-radius: 5px;
+  max-width: 305px;
+  width: 100%;
+  margin: 0 auto;
 
   ${props =>
     props.type === 'filled' &&
     css`
-      background: ${colors.light.main};
+      background: ${props.theme.colors.primary};
+      opacity: 0.6;
+    `}
+
+  ${props =>
+    props.type === 'filled' &&
+    props.active &&
+    css`
+      opacity: 1;
     `}
 `;
 
@@ -35,21 +45,22 @@ export const Content = styled.View<ContentProps>`
   ${props =>
     props.type === 'outline' &&
     css`
-      border: 1px solid ${colors.light.main};
+      border: 1px solid ${props.theme.colors.primary};
     `}
 `;
+
 export const Title = styled.Text<TitleProps>`
-  ${fonts.secondary};
+  ${props => props.theme.fonts.paragraph};
 
   ${props =>
     props.type === 'outline' &&
     css`
-      color: ${colors.light.main};
+      color: ${props.theme.colors.primary};
     `}
 
   ${props =>
     props.type === 'filled' &&
     css`
-      color: ${colors.light.background};
+      color: ${props.theme.colors.background};
     `}
 `;

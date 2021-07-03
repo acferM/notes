@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -12,6 +12,7 @@ import {
 
 import illustrationImg from '../../assets/illustration.png';
 import { Button } from '../../components/Button';
+import { useTheme } from '../../hooks/useTheme';
 
 export function Welcome(): JSX.Element {
   const navigation = useNavigation();
@@ -36,10 +37,11 @@ export function Welcome(): JSX.Element {
       </TextContainer>
 
       <ButtonsContainer>
-        <Button type="outline" onPress={() => redirect('Login')}>
+        <Button styleType="outline" onPress={() => redirect('Login')}>
           FAZER LOGIN
         </Button>
         <Button
+          active
           containerStyles={{ marginTop: 8 }}
           onPress={() => redirect('Signup')}
         >

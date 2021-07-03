@@ -4,22 +4,29 @@ import { ViewStyle } from 'react-native';
 import { Container, Content, Title } from './styles';
 
 interface ButtonProps {
-  type?: 'outline' | 'filled';
+  styleType?: 'outline' | 'filled';
   children: React.ReactText;
   containerStyles?: ViewStyle;
   onPress: () => void;
+  active?: boolean;
 }
 
 export function Button({
-  type = 'filled',
+  styleType = 'filled',
   children,
   containerStyles = {},
   onPress,
+  active,
 }: ButtonProps): JSX.Element {
   return (
-    <Container style={containerStyles} type={type} onPress={onPress}>
-      <Content type={type}>
-        <Title type={type}>{children}</Title>
+    <Container
+      active={active}
+      style={containerStyles}
+      type={styleType}
+      onPress={onPress}
+    >
+      <Content type={styleType}>
+        <Title type={styleType}>{children}</Title>
       </Content>
     </Container>
   );
