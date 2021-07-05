@@ -1,9 +1,12 @@
+import React, { useCallback, useRef, useState } from 'react';
+import { Alert, TextInput } from 'react-native';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
-import React, { useRef, useState } from 'react';
-import { Alert, TextInput } from 'react-native';
+import * as Yup from 'yup';
+
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+
 import {
   Container,
   LoginForm,
@@ -13,6 +16,7 @@ import {
   SignUpRedirectButton,
   SignUpRedirectText,
 } from './styles';
+import getValidationErros from '../../utils/getValidationErrors';
 
 interface FormData {
   text: string;
@@ -26,10 +30,24 @@ export function Login(): JSX.Element {
   const [emailInputFilled, setEmailInputFilled] = useState(false);
   const [passwordInputFilled, setPasswordInputFilled] = useState(false);
 
-  function handleSubmit(data: FormData) {
-    console.log('teste');
-    Alert.alert(JSON.stringify(data));
-  }
+  const handleSubmit = useCallback(async (data: FormData) => {
+    const schema = Yup.object().shape({
+      email: Yup.string()
+        .required('Digite um e-mail')
+        .email('Digite um e-mail válido'),
+      password: Yup.string().required('Digite uma senha'),
+    });
+
+    try {
+      await schema.validate(data, { abortEarly: false });
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErros(err);
+
+        console.log(JSON.stringify(errors, null, 2));
+      }
+    }
+  }, []);
 
   return (
     <Container>
