@@ -14,6 +14,7 @@ declare module 'styled-components' {
 
     fonts: {
       title: string;
+      subtitle: string;
       default: string;
       secondary: string;
       paragraph: string;

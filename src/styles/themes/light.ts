@@ -14,6 +14,10 @@ export default {
       font-family: 'Poppins_700Bold';
       font-size: 20px;
     `,
+    subtitle: `
+      font-family: 'Poppins_500Medium';
+      font-size: 18px;
+    `,
     default: `
       font-family: Poppins_500Medium;
       font-size: 14px;

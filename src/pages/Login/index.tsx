@@ -4,6 +4,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
 import * as Yup from 'yup';
 
+import { useNavigation } from '@react-navigation/native';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 
@@ -30,24 +31,31 @@ export function Login(): JSX.Element {
   const [emailInputFilled, setEmailInputFilled] = useState(false);
   const [passwordInputFilled, setPasswordInputFilled] = useState(false);
 
-  const handleSubmit = useCallback(async (data: FormData) => {
-    const schema = Yup.object().shape({
-      email: Yup.string()
-        .required('Digite um e-mail')
-        .email('Digite um e-mail válido'),
-      password: Yup.string().required('Digite uma senha'),
-    });
+  const navigation = useNavigation();
 
-    try {
-      await schema.validate(data, { abortEarly: false });
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErros(err);
+  const handleSubmit = useCallback(
+    async (data: FormData) => {
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .required('Digite um e-mail')
+          .email('Digite um e-mail válido'),
+        password: Yup.string().required('Digite uma senha'),
+      });
 
-        console.log(JSON.stringify(errors, null, 2));
+      try {
+        await schema.validate(data, { abortEarly: false });
+
+        navigation.navigate('Home');
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErros(err);
+
+          console.log(JSON.stringify(errors, null, 2));
+        }
       }
-    }
-  }, []);
+    },
+    [navigation],
+  );
 
   return (
     <Container>
